@@ -13,7 +13,7 @@ var hour17 = $('#hour-17');
 var saveBtn = $('.saveBtn');
 
 $(function () {
-    // * listener for click events on the save button that uses the id in the containing time-block as a key to save the user input in local storage.
+    // * listener for click events on the save button that uses the id in the containing time-block as a key to save the user input in local storage
     saveBtn.on('click', function (event) {
       event.preventDefault();
       var input = $(this).siblings('textarea').val();
@@ -33,10 +33,12 @@ $(function () {
       }
     });
 
-    // TODO: Add code to get any user input that was saved in localStorage and set
-    // the values of the corresponding textarea elements. HINT: How can the id
-    // attribute of each time-block be used to do this?
-    //
-    // TODO: Add code to display the current date in the header of the page.
-    currentDay.text(now.format('dddd, MMMM D, YYYY'));
+    // * gets any user input that was saved in localStorage and set the values of the corresponding textarea elements
+    timeBlocks.each(function () {
+      var timeBlockId = $(this).attr('id');
+      var input = localStorage.getItem(timeBlockId);
+      $(this).find('textarea').val(input);
+    });
+    // * displays the current date in the header of the page
+    currentDay.text(now.format('dddd, MMMM D, YYYY h:mm A'));
   });
