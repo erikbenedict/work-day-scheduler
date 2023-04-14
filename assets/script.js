@@ -16,6 +16,11 @@ var saveBtn = $('.saveBtn');
 $(function () {
   // * displays the current date and time in the header of the page
   currentDay.text(now.format('dddd, MMMM D, YYYY h:mm A'));
+  // * update the current date and time every minute
+  setInterval(function() {
+    now = dayjs();
+    currentDay.text(now.format('dddd, MMMM D, YYYY h:mm A'));
+  }, 1000);
   // * save button listener that uses the id in the containing time-block as a key to save the user input in local storage
   saveBtn.on('click', function (event) {
     event.preventDefault();
